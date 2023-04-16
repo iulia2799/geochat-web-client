@@ -5,15 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'geochat-web-client';
-
-  isLoggedIn: boolean = false;
-
-  constructor(){}
-
-  ngOnInit(): void {
-   
-  }
 
 }
