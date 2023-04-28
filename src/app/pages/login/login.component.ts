@@ -11,6 +11,7 @@ import {
   transition,
   query,
   animateChild,
+  keyframes,
 } from '@angular/animations';
 
 @Component({
@@ -30,10 +31,10 @@ import {
         //transform: 'translateX(10%)'
       })),
       transition('open => closed', [
-        animate('0.5s ease-out')
+        animate('1s ease-out')
       ]),
       transition('closed => open', [
-        animate('0.5s ease-in')
+        animate('1s ease-in')
       ]),
     ]),
     trigger('closedOpen', [
@@ -48,10 +49,10 @@ import {
         // transform: 'translateX(10%)'
       })),
       transition('open => closed', [
-        animate('0.5s ease-out')
+        animate('1s ease-out')
       ]),
       transition('closed => open', [
-        animate('0.5s ease-in')
+        animate('1s ease-in')
       ]),
     ]),
   ]

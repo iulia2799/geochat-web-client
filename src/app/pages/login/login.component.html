@@ -1,7 +1,7 @@
 <div style="background-image: linear-gradient(rgb(42, 10, 78),rgb(95, 11, 116));">
   <div class="container">
-    <mat-card [@openClose]="isOpen ? 'open' : 'closed'" *ngIf="isOpen">
-        <mat-card-content>
+    <mat-card [@openClose]="isOpen ? 'open' : 'closed'">
+        <mat-card-content *ngIf="isOpen">
           <div class="header">
             <P>Sign Into Your Account </P>
           </div>
@@ -46,8 +46,8 @@
           </div>
         </mat-card-content>
     </mat-card>
-    <mat-card [@closedOpen]="isOpen ? 'closed' : 'open'" *ngIf="!isOpen">
-        <mat-card-content>
+    <mat-card [@closedOpen]="isOpen ? 'closed' : 'open'">
+        <mat-card-content *ngIf="!isOpen">
           <div class="header">
             <P>Create Your Account </P>
           </div>

@@ -1,0 +1,22 @@
+.body{
+    background-color: #20222d;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 70px);
+}
+
+.chat-list {
+    width: 30%;
+    margin: 16px;
+    background: #c5cae9;
+    border-radius: 16px;
+}
+.messages {
+    width: 70%;
+    margin: 16px;
+    background: #464a62;
+    border-radius: 16px;
+}
