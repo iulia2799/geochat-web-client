@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+    height: calc(100vh - 70px - 70px);
+}
+
+.chat-window{
+    height: 90%;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.messenger {
+    border-radius: 16px;
+    height: 10%;
+    width: 100%;
+    background: #c5cae9;
+}
+
+.message-container {
+    margin: 8px;
+    display: flex;
+    flex-direction: row;
+    word-wrap: break-word;
+    white-space: normal;
+}
+.message-form {
+    width: 80%;
+}
+.message-actions {
+    width: 20%;
+}

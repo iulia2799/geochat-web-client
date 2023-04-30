@@ -1,4 +1,4 @@
-<div style="background-image: linear-gradient(rgb(42, 10, 78),rgb(95, 11, 116));">
+<div style="background-image: linear-gradient(#20222d,#464a62);">
   <div class="container">
     <mat-card [@openClose]="isOpen ? 'open' : 'closed'">
         <mat-card-content *ngIf="isOpen">
@@ -38,11 +38,11 @@
               </mat-error>
             </mat-form-field>
             </div>
-            <button mat-flat-button color="primary">Login</button>
+            <button mat-flat-button color="primary" style="background-color: #464a62;">Login</button>
           </form>
     
           <div class="button-row">
-            <button mat-flat-button color="accent" (click)="toggle()">Create New Account</button>
+            <button mat-flat-button color="accent" style="background-color: #20222d;" (click)="toggle()">Create New Account</button>
           </div>
         </mat-card-content>
     </mat-card>
@@ -92,11 +92,11 @@
               </mat-error>
             </mat-form-field>
             </div>
-            <button mat-flat-button color="primary">Login</button>
+            <button mat-flat-button color="primary" style="background-color: #464a62;">Create Account</button>
           </form>
     
           <div class="button-row">
-            <button mat-flat-button color="accent" (click)="toggle()">Create New Account</button>
+            <button mat-flat-button color="accent" style="background-color: #20222d;" (click)="toggle()">Login to existing account</button>
           </div>
         </mat-card-content>
     </mat-card>
