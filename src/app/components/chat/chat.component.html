@@ -5,10 +5,15 @@
     <div class="messenger mat-elevation-z5">
         <div class="message-container">
             <div class="message-form">
-                <span>Send a message</span>
+                <mat-form-field appearance="outline" style="width:100%">
+                    <mat-label>Send a message</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
             </div>
             <div class="message-actions">
-                <button mat-button>send</button>
+                <button mat-icon-button><mat-icon>send</mat-icon></button>
+                <button mat-icon-button><mat-icon>image</mat-icon></button>
+                <button mat-icon-button><mat-icon>note_add</mat-icon></button>
             </div>
         </div>
     </div>

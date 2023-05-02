@@ -1,0 +1,16 @@
+@import '@angular/material/theming';
+
+// Define your theme's primary and accent colors
+$my-primary: mat-palette($mat-deep-purple);
+$my-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// Create your theme by combining the primary and accent colors
+$my-theme: mat-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent
+  )
+));
+
+// Include your custom theme in the Angular Material theming system
+@include angular-material-theme($my-theme);
