@@ -1,6 +1,9 @@
 <div style="margin:16px;">
     <mat-form-field appearance="outline" style="width:100%">
-        <input matInput [formControl]="searchForm"/>
+        <input matInput [formControl]="searchForm" placeholder="Search for chat" [matAutocomplete]="chats">
         <mat-label>Search</mat-label>
     </mat-form-field>
+    <mat-autocomplete #chats="matAutocomplete">
+       <mat-option *ngFor="let el of mockChats">{{el}}</mat-option>
+    </mat-autocomplete>
 </div>
