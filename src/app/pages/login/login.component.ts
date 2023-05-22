@@ -93,7 +93,8 @@ export class LoginComponent implements OnInit{
       if(this.loginForm.get('email')?.value !== null && this.loginForm.get('password')?.value !== null) {
         let email = this.loginForm.get('email')?.value;
         let password = this.loginForm.get('password')?.value;
-        this.authService.authenticate(email,password).subscribe(response => {
+        if(this.loginForm.get('username')?.value === null || this.loginForm.get('username')?.value === '') {
+          this.authService.authenticate(email,password).subscribe(response => {
           if(response.statusCode === 401) {
             this._matSnackBar.open('Invalid credentials','OK',{
               duration: 2000,
@@ -102,6 +103,22 @@ export class LoginComponent implements OnInit{
             this.router.navigateByUrl('main-page');
           }
         });
+        }
+        else {
+          this.authService.registerUser(email,this.loginForm.get('username')?.value,password).subscribe(
+            response => {
+              if(response.statusCode === 401) {
+                this._matSnackBar.open('Something went wrong','OK',{
+                  duration: 2000,
+                });
+              } else {
+                this._matSnackBar.open('Registering was a success. Please log in with the provided credentials.','OK',{
+                  duration: 10000,
+                });
+              }
+            }
+          )
+        }
       }
     }
   }
