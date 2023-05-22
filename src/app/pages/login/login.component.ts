@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+//import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/identityApi/services';
+import { UserLoginDto } from 'src/app/identityApi/models';
 import {
   trigger,
   state,
@@ -93,31 +95,37 @@ export class LoginComponent implements OnInit{
       if(this.loginForm.get('email')?.value !== null && this.loginForm.get('password')?.value !== null) {
         let email = this.loginForm.get('email')?.value;
         let password = this.loginForm.get('password')?.value;
+        var user : UserLoginDto = {
+            email: email,
+            password: password
+        };
+
         if(this.isOpen) {
-          this.authService.authenticate(email,password).subscribe(response => {
-          if(response.statusCode === 401) {
-            this._matSnackBar.open('Invalid credentials','OK',{
-              duration: 2000,
-            });
-          } else {
-            this.router.navigateByUrl('main-page');
-          }
-        });
+          //var response = this.authService.apiAuthLoginPost$Json$Response({body: user}).pipe()
+          //this.authService.authenticate(email,password).subscribe(response => {
+        //   if(response.statusCode === 401) {
+        //     this._matSnackBar.open('Invalid credentials','OK',{
+        //       duration: 2000,
+        //     });
+        //   } else {
+        //     this.router.navigateByUrl('main-page');
+        //   }
+        // });
         }
         else {
-          this.authService.registerUser(email,this.loginForm.get('username')?.value,password).subscribe(
-            response => {
-              if(response.statusCode === 401) {
-                this._matSnackBar.open('Something went wrong','OK',{
-                  duration: 2000,
-                });
-              } else {
-                this._matSnackBar.open('Registering was a success. Please log in with the provided credentials.','OK',{
-                  duration: 10000,
-                });
-              }
-            }
-          )
+        //   this.authService.registerUser(email,this.loginForm.get('username')?.value,password).subscribe(
+        //     response => {
+        //       if(response.statusCode === 401) {
+        //         this._matSnackBar.open('Something went wrong','OK',{
+        //           duration: 2000,
+        //         });
+        //       } else {
+        //         this._matSnackBar.open('Registering was a success. Please log in with the provided credentials.','OK',{
+        //           duration: 10000,
+        //         });
+        //       }
+        //     }
+        //   )
         }
       }
     }
