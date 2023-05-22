@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit{
       if(this.loginForm.get('email')?.value !== null && this.loginForm.get('password')?.value !== null) {
         let email = this.loginForm.get('email')?.value;
         let password = this.loginForm.get('password')?.value;
-        if(this.loginForm.get('username')?.value === null || this.loginForm.get('username')?.value === '') {
+        if(this.isOpen) {
           this.authService.authenticate(email,password).subscribe(response => {
           if(response.statusCode === 401) {
             this._matSnackBar.open('Invalid credentials','OK',{

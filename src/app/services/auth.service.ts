@@ -9,20 +9,35 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
 
-  fakeUser: User = {
-    email: 'iuliasarah27@gmail.com',
-    password: 'admin1234'
-  };
-
   constructor(private http: HttpClient) { }
 
   authenticate(email: string, password: string): Observable<any> {
-    if(email === this.fakeUser.email && password === this.fakeUser.password) {
-      localStorage.setItem("token", JSON.stringify(this.fakeUser));
-      return of(new HttpResponse(200));
-    } else {
-      return of(new HttpResponse(401));
-    }
+    var result: Observable<any> = of(null);
+    const url = 'https://geochatidentity.azurewebsites.net/api/Auth/login';
+    const payload = {
+      email: 'iuliasarah27@gmail.com',
+      password: 'S$432ffss4#'
+    };
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': '/'
+      })
+    };
+
+    this.http.post(url, payload, httpOptions)
+      .subscribe(
+        (response) => {
+          console.log('Login successful:', response);
+          result = of(new HttpResponse(200));
+        },
+        (error) => {
+          console.log('An error occurred during login:', error);
+          result = of(new HttpResponse(400));
+        }
+      );
+    return result;
   }
 
   registerUser(email: string, username: string, password: string): Observable<any> {
@@ -43,13 +58,13 @@ export class AuthService {
     .subscribe(
       (response) => {
         console.log('Success in creating the user');
-        result = response.toString();
+        console.log(response)
       },
       (error) => {
         console.log('error');
       }
     );
-    return result !== "" ? of(new HttpResponse(200)) : of(new HttpResponse(401));
+    return of(new HttpResponse(200));
   }
 
   logout(): void {
