@@ -1,23 +1,30 @@
 <div class="container">
     <div class="chat-window">
-        <p style="margin:16px">Messages from {{chatValue}}</p>
-        <div *ngIf="chatValue">
-            <div class="chat-content">
-                <mat-card class="message-bubble">
-                    <div class="time-box">
-                        <span class="time-text">time</span>
+        <p style="margin:16px">Messages from {{chatName}}</p>
+        <div *ngIf="messageList.length" class="chat-container">
+            <div *ngFor="let message of messageList">
+                <div *ngIf="loggedUserId === message.userId">
+                    <div class="chat-content sender">
+                        <mat-card class="message-bubble--sender">
+                            <div class="time-box">
+                                <span class="time-text">time</span>
+                            </div>
+                            <span>{{message.content}}</span>
+                        </mat-card>
                     </div>
-                    <span>message from friendjlkdsjfldsjfdlsjfkldsjflksdjfkldsjflkdsjflsdjflksdjfkd fd sf ds fd sf ds f ds fd s fd s</span>
-                </mat-card>
-            </div>
-            <div class="chat-content sender">
-                <mat-card class="message-bubble--sender">
-                    <div class="time-box">
-                        <span class="time-text">time</span>
+                </div>
+                <div *ngIf="loggedUserId !== message.userId">
+                    <div class="chat-content">
+                        <mat-card class="message-bubble">
+                            <div class="time-box">
+                                <span class="time-text">time</span>
+                            </div>
+                            <span>{{message.content}}</span>
+                        </mat-card>
                     </div>
-                    <span>message from user</span>
-                </mat-card>
+                </div>
             </div>
+            
         </div>
         <div *ngIf="!chatValue" class="chat-content">
             <p>Select a conversation</p>

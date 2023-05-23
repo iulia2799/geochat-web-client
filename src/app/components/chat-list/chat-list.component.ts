@@ -25,17 +25,10 @@ export class ChatListComponent implements OnInit{
   }
 
   getChats() {
-    this.usersService.apiUsersGet$Response().pipe().subscribe(
-      (response) => {
-        //console.log(response.body)
-        const responseBody = response.body as unknown;
-        this.userList = JSON.parse(responseBody as string);
-      }
-    )
     this.chatService.apiChatGet$Json$Response().pipe().subscribe(
       (response) => {
         console.log(response)
-        //this.chatList = response.body;
+        this.chatList = response.body;
       }
     )
   }

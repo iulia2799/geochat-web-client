@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { MessageReadDto } from 'src/app/chatApi/models';
 import { SharedmediaService } from 'src/app/services/sharedmedia.service';
 import { SignalrService } from 'src/app/services/signalr.service';
 
@@ -13,7 +14,10 @@ import { SignalrService } from 'src/app/services/signalr.service';
 export class ChatComponent implements OnInit {
 
   chatValue: any | undefined;
+  chatName!: string;
   messageForm!: FormControl;
+  messageList: Array<MessageReadDto> = [];
+  loggedUserId = "";
 
   constructor(
     private signalRService: SignalrService,
@@ -36,7 +40,16 @@ export class ChatComponent implements OnInit {
     //console.log(localStorage.getItem('loginToken'))
     this.sharedMediaService.value$.subscribe(value => {
       this.chatValue = value;
-      console.log(this.chatValue)
+      if('chatName' in value) {
+        this.chatName = value.chatName;
+      }
+      if('messages' in value) {
+        this.messageList = value.messages;
+        const user = JSON.parse(localStorage.getItem('userInfo') as string);
+        this.loggedUserId = user.Id;
+        //console.log(this.loggedUserId)
+      }
+      //console.log(this.messageList)
     })
   }
 }

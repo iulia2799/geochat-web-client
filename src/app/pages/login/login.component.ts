@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 //import { AuthService } from 'src/app/services/auth.service';
-import { AuthService } from 'src/app/identityApi/services';
+import { AuthService, UsersService } from 'src/app/identityApi/services';
 import { UserLoginDto } from 'src/app/identityApi/models';
 import {
   trigger,
@@ -15,6 +15,7 @@ import {
   animateChild,
   keyframes,
 } from '@angular/animations';
+import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'ctt-login-page',
@@ -72,11 +73,13 @@ export class LoginComponent implements OnInit{
 
 
   isOpen: boolean = true;  
+  stringifiedBody: unknown;
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private _matSnackBar: MatSnackBar) {
+    private _matSnackBar: MatSnackBar,
+    private usersService: UsersService) {
   }
 
   ngOnInit() {
@@ -106,6 +109,8 @@ export class LoginComponent implements OnInit{
             response => {
               console.log(response)
               this.loginToken = response.body;
+              const decodedToken = jwtDecode(this.loginToken);
+              localStorage.setItem('userInfo',JSON.stringify(decodedToken));
               localStorage.setItem('token', JSON.stringify(response.body));
               this.router.navigateByUrl('main-page');
             }, (error) => {

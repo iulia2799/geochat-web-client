@@ -1,10 +1,10 @@
 <div class="container">
     <div *ngFor="let el of chatList" style="width:100%">
-        <div class="chat-box" (click)="takeMeToChat(el.id)">
+        <div class="chat-box" (click)="takeMeToChat(el)">
             <div class="chat-box-container">
                 <span>{{el.chatName}}</span>
-                <span>{{el.messages ? el.messages[el.messages.length-1] : ''}}</span>
-                <span>{{el.messages ? el.messages[el.messages.length-1].timeSent : ''}}</span>
+                <!-- <span>{{el.messages ? el.messages[el.messages.length-1] : ''}}</span>
+                <span>{{el.messages ? el.messages[el.messages.length-1].timeSent : ''}}</span> -->
             </div>
         </div>
         <div style="height: 8px"></div>
