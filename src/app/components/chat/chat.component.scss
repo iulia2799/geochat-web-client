@@ -14,7 +14,48 @@
 }
 
 .chat-content {
-    margin: 8px;
+    margin: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.sender{
+    justify-content: flex-end;
+}
+
+.message-bubble {
+    width: fit-content;
+    padding: 16px;
+    background-color: rgb(145, 133, 156);
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+
+.message-bubble--sender {
+    width: fit-content;
+    padding: 16px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(156, 156, 181);
+    height: fit-content;
+}
+
+.time-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.time-text {
+    color: #392852;
+}
+
+.message-text {
+    width: 50%;
+    word-wrap: break-word;
 }
 
 .messenger {
@@ -33,13 +74,13 @@
     white-space: normal;
 }
 .message-form {
-    width: 80%;
+    width: 90%;
 }
 .message-actions {
     display: flex;
     flex-direction: row;
     flex-shrink: 1;
-    width: 20%;
+    width: 10%;
 }  
 
 ::ng-deep .mat-mdc-text-field-wrapper {

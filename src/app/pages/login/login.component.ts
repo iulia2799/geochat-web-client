@@ -61,6 +61,7 @@ import {
 })
 export class LoginComponent implements OnInit{
   hide: boolean = true;
+  loginToken!: string;
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -101,7 +102,23 @@ export class LoginComponent implements OnInit{
         };
 
         if(this.isOpen) {
-          //var response = this.authService.apiAuthLoginPost$Json$Response({body: user}).pipe()
+          var response = this.authService.apiAuthLoginPost$Json$Response({body: user}).pipe().subscribe(
+            response => {
+              console.log(response)
+              this.loginToken = response.body;
+              localStorage.setItem('token', JSON.stringify(response.body));
+              this.router.navigateByUrl('main-page');
+            }, (error) => {
+              console.error(error)
+              this._matSnackBar.open('Invalid credentials','OK',{
+                       duration: 2000,
+                     });
+            }
+          );
+          setTimeout(() => {
+            console.log(this.loginToken)
+          }, 1000);
+
           //this.authService.authenticate(email,password).subscribe(response => {
         //   if(response.statusCode === 401) {
         //     this._matSnackBar.open('Invalid credentials','OK',{
@@ -129,9 +146,5 @@ export class LoginComponent implements OnInit{
         }
       }
     }
-  }
-
-  takeMeToRegister() {
-    this.router.navigateByUrl(this.router.url + '/signup');
   }
 }

@@ -1,7 +1,26 @@
 <div class="container">
     <div class="chat-window">
-        <div class="chat-content">
-            <p>messages</p>
+        <p style="margin:16px">Messages from {{chatValue}}</p>
+        <div *ngIf="chatValue">
+            <div class="chat-content">
+                <mat-card class="message-bubble">
+                    <div class="time-box">
+                        <span class="time-text">time</span>
+                    </div>
+                    <span>message from friendjlkdsjfldsjfdlsjfkldsjflksdjfkldsjflkdsjflsdjflksdjfkd fd sf ds fd sf ds f ds fd s fd s</span>
+                </mat-card>
+            </div>
+            <div class="chat-content sender">
+                <mat-card class="message-bubble--sender">
+                    <div class="time-box">
+                        <span class="time-text">time</span>
+                    </div>
+                    <span>message from user</span>
+                </mat-card>
+            </div>
+        </div>
+        <div *ngIf="!chatValue" class="chat-content">
+            <p>Select a conversation</p>
         </div>
     </div>
     <div class="messenger mat-elevation-z5">
@@ -9,13 +28,13 @@
             <div class="message-form">
                 <mat-form-field appearance="outline" style="width:100%">
                     <mat-label>Send a message</mat-label>
-                    <input matInput type="text">
+                    <input matInput type="text" [formControl]="messageForm">
                 </mat-form-field>
             </div>
             <div class="message-actions">
-                <button mat-icon-button><mat-icon>send</mat-icon></button>
-                <button mat-icon-button><mat-icon>image</mat-icon></button>
-                <button mat-icon-button><mat-icon>note_add</mat-icon></button>
+                <button mat-icon-button (click)="submit()"><mat-icon>send</mat-icon></button>
+                <!-- <button mat-icon-button><mat-icon>image</mat-icon></button>
+                <button mat-icon-button><mat-icon>note_add</mat-icon></button> -->
             </div>
         </div>
     </div>

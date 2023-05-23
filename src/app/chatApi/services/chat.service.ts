@@ -26,7 +26,7 @@ export class ChatService extends BaseService {
   /**
    * Path part for operation apiChatGet
    */
-  static readonly ApiChatGetPath = '/api/Chat';
+  static readonly ApiChatGetPath = 'api/Chat';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -67,7 +67,6 @@ export class ChatService extends BaseService {
   context?: HttpContext
 
 ): Observable<Array<ChatReadDto>> {
-
     return this.apiChatGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<ChatReadDto>>) => r.body as Array<ChatReadDto>)
     );
@@ -121,7 +120,7 @@ export class ChatService extends BaseService {
   /**
    * Path part for operation apiChatPost
    */
-  static readonly ApiChatPostPath = '/api/Chat';
+  static readonly ApiChatPostPath = 'api/Chat';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

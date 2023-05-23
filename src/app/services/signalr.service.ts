@@ -12,7 +12,7 @@ export class SignalrService {
     var accessToken: string = localStorage.getItem("token") ?? "";
     this.hubConnection = new HubConnectionBuilder().withUrl('https://geochatdefaultchat.azurewebsites.net/chatHub', 
     {
-        accessTokenFactory: () => accessToken 
+        accessTokenFactory: () => accessToken.substring(1,accessToken.length-1) 
     }).build();
     this.hubConnection.start()
     .then(() => console.log('Connected to SignalR hub'))

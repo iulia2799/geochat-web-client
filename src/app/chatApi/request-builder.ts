@@ -351,6 +351,10 @@ export class RequestBuilder {
       httpHeaders = headerParam.append(httpHeaders);
     }
 
+    var accessToken = localStorage.getItem('token');
+    accessToken = accessToken ? accessToken.substring(1,accessToken.length-1) : '';
+    httpHeaders = httpHeaders.append("Authorization", "Bearer " + accessToken);
+
     // Request content headers
     if (this._bodyContentType && !(this._bodyContent instanceof FormData)) {
       httpHeaders = httpHeaders.set('Content-Type', this._bodyContentType);
