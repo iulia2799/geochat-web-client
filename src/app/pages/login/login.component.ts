@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 //import { AuthService } from 'src/app/services/auth.service';
 import { AuthService, UsersService } from 'src/app/identityApi/services';
-import { UserLoginDto } from 'src/app/identityApi/models';
+import { UserLoginDto, UserRegisterDto } from 'src/app/identityApi/models';
 import {
   trigger,
   state,
@@ -103,6 +103,12 @@ export class LoginComponent implements OnInit{
             email: email,
             password: password
         };
+        var registerUser: UserRegisterDto = {
+          email: email,
+          password: password,
+          passwordConfirmation: password,
+          userName: this.loginForm.get('username')?.value
+        }
 
         if(this.isOpen) {
           var response = this.authService.apiAuthLoginPost$Json$Response({body: user}).pipe().subscribe(
@@ -135,6 +141,26 @@ export class LoginComponent implements OnInit{
         // });
         }
         else {
+          var response = this.authService.apiAuthRegisterPost$Json$Response({body: registerUser}).pipe().subscribe(
+            response => {
+              if(response.status == 200) {
+                this._matSnackBar.open(`Congratulations on creating your account! \n 
+                Now log in with the provided email and password.`,'OK',{
+                  duration: 2000,
+                });
+              } else {
+                this._matSnackBar.open('Something went wrong','OK',{
+                  duration: 2000,
+                });
+              }
+            
+            }, (error) => {
+              this._matSnackBar.open('Something went wrong','OK',{
+                duration: 2000,
+              });
+              console.log(error);
+            }
+          );
         //   this.authService.registerUser(email,this.loginForm.get('username')?.value,password).subscribe(
         //     response => {
         //       if(response.statusCode === 401) {
