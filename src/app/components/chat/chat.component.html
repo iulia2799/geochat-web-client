@@ -7,6 +7,8 @@
                     <div class="chat-content sender">
                         <mat-card class="message-bubble--sender">
                             <div class="time-box">
+                                <span class="time-text">{{message.userName}}</span>
+                                <div style="width: 16px"></div>
                                 <span class="time-text">{{message.timeSent | date:'dd-MM-YY HH:mm'}}</span>
                             </div>
                             <span>{{message.content}}</span>
@@ -17,6 +19,8 @@
                     <div class="chat-content">
                         <mat-card class="message-bubble">
                             <div class="time-box">
+                                <span class="time-text">{{message.userName}}</span>
+                                <div style="width: 16px"></div>
                                 <span class="time-text">{{message.timeSent | date:'dd-MM-YY HH:mm'}}</span>
                             </div>
                             <span>{{message.content}}</span>

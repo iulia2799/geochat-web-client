@@ -39,6 +39,12 @@ export class ChatListComponent implements OnInit{
         // Update relevant component variable(s)
         //this.chatList.push(messageData);
         //this.chatList$ = of(this.chatList);
+        console.log(messageData)
+        this.chatList.forEach((element)=> {
+          if(element.id === messageData.chatId) {
+            element.messages?.unshift(messageData);
+          }
+        });
       }
     );
   }
