@@ -1,35 +1,14 @@
 <div class="container">
-    <div class="chat-box">
-        <span>chat 1</span>
-    </div>
-    <div style="height: 8px"></div>
-    <div class="chat-box">
-        <span>chat 1</span>
-    </div>
-    <div style="height: 8px"></div>
-    <div class="chat-box">
-        <span>chat 1</span>
-    </div>
-    <div style="height: 8px"></div>
-    <div class="chat-box">
-        <span>chat 1</span>
-    </div>
-    <div style="height: 8px"></div>
-    <div class="chat-box">
-        <span>chat 1</span>
-    </div>
-    <div style="height: 8px"></div>
-    <div class="chat-box">
-        <span>chat 1</span>
-    </div>
-    <div style="height: 8px"></div>
-    <div class="chat-box">
-        <span>chat 1</span>
-    </div>
-    <div style="height: 8px"></div>
-    <div class="chat-box">
-        <span>chat 1</span>
-    </div>
-    <div style="height: 8px"></div>
-    
+    <div *ngFor="let el of chatList$ | async" style="width:100%">
+        <div class="chat-box" (click)="takeMeToChat(el)">
+            <div class="chat-box-container">
+                <span>{{el.chatName}}</span>
+                <span *ngIf="el.messages?.length">{{el.messages?.at(0)?.timeSent | date :'dd-MM-YY HH:mm'}}</span>
+            </div>
+            <div *ngIf="el.messages?.length" style="margin-left:8px">
+                <span>Last message: {{el.messages ? el.messages[0].content?.substring(0,20) : ''}}</span>
+            </div>
+        </div>
+        <div style="height: 8px"></div>
+    </div>    
 </div>
