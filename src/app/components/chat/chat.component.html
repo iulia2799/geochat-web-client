@@ -2,12 +2,12 @@
     <div class="chat-window">
         <p style="margin:16px">Messages from {{chatName}}</p>
         <div *ngIf="messageList.length" class="chat-container">
-            <div *ngFor="let message of messageList">
+            <div *ngFor="let message of messageList$ | async">
                 <div *ngIf="loggedUserId === message.userId">
                     <div class="chat-content sender">
                         <mat-card class="message-bubble--sender">
                             <div class="time-box">
-                                <span class="time-text">time</span>
+                                <span class="time-text">{{message.timeSent | date:'dd-MM-YY HH:mm'}}</span>
                             </div>
                             <span>{{message.content}}</span>
                         </mat-card>
@@ -17,7 +17,7 @@
                     <div class="chat-content">
                         <mat-card class="message-bubble">
                             <div class="time-box">
-                                <span class="time-text">time</span>
+                                <span class="time-text">{{message.timeSent | date:'dd-MM-YY HH:mm'}}</span>
                             </div>
                             <span>{{message.content}}</span>
                         </mat-card>
@@ -40,8 +40,6 @@
             </div>
             <div class="message-actions">
                 <button mat-icon-button (click)="submit()"><mat-icon>send</mat-icon></button>
-                <!-- <button mat-icon-button><mat-icon>image</mat-icon></button>
-                <button mat-icon-button><mat-icon>note_add</mat-icon></button> -->
             </div>
         </div>
     </div>

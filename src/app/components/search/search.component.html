@@ -4,6 +4,6 @@
         <mat-label>Search</mat-label>
     </mat-form-field>
     <mat-autocomplete #chats="matAutocomplete" [displayWith]="displayFn"  (optionSelected)="optionSelection($event)">
-       <mat-option *ngFor="let option of userList" [value]="option">{{option.username}}</mat-option>
+       <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">{{option.username}}</mat-option>
     </mat-autocomplete>
 </div>

@@ -22,12 +22,12 @@ export class SignalrService {
   subscribeConnection(chatCreatedCallback: Function, messageReceivedCallback: Function){
     this.hubConnection.on('MessageReceived',(data: MessageReadDto) => {
       console.log(`Received message data: ${data}`);
-      chatCreatedCallback(data);
+      messageReceivedCallback(data);
     })
 
     this.hubConnection.on('ChatCreated',(data: ChatReadDto) => {
-        console.log(`Received chat data: ${data}`);
-        messageReceivedCallback(data);
+        console.log(`Received chat data: ${data}`); 
+        chatCreatedCallback(data);
       })
 
     this.hubConnection.onclose((e) => {

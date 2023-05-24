@@ -1,5 +1,5 @@
 <div class="container">
-    <div *ngFor="let el of chatList" style="width:100%">
+    <div *ngFor="let el of chatList$ | async" style="width:100%">
         <div class="chat-box" (click)="takeMeToChat(el)">
             <div class="chat-box-container">
                 <span>{{el.chatName}}</span>
