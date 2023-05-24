@@ -44,13 +44,16 @@ export class ChatListComponent implements OnInit{
   }
 
   getChats() {
-    this.chatService.apiChatGet$Json$Response().pipe().subscribe(
-      (response) => {
-        //console.log(response)
-        this.chatList = response.body;
-        this.chatList$ = of(this.chatList);
-      }
-    )
+    setTimeout(()=> {
+      this.chatService.apiChatGet$Json$Response().pipe().subscribe(
+        (response) => {
+          console.log(response)
+          this.chatList = response.body;
+          this.chatList$ = of(this.chatList);
+        }
+      )
+    },500);
+   
   }
 
   takeMeToChat(el: any) {

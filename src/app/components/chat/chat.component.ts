@@ -64,6 +64,10 @@ export class ChatComponent implements OnInit {
       }
       if('messages' in value) {
         this.messageList = value.messages;
+        this.messageList = this.messageList.filter((value, index, array) => {
+          const firstIndex = array.findIndex(obj => obj.id === value.id);
+          return index === firstIndex;
+        });
         this.messageList.sort((a,b) => {
           const timestampA = new Date(a.timeSent as string).getTime();
           const timestampB = new Date(b.timeSent as string).getTime();
@@ -79,13 +83,15 @@ export class ChatComponent implements OnInit {
     });
     this.signalRService.subscribeConnection(
       (chatData: ChatReadDto) => {
-        // Handle chat data
-        // Update relevant component variable(s)
       },
       (messageData: MessageReadDto) => {
-        // Handle message data
-        // Update relevant component variable(s)
         this.messageList.push(messageData);
+        console.log(this.messageList)
+        this.messageList = this.messageList.filter((value, index, array) => {
+          const firstIndex = array.findIndex(obj => obj.id === value.id);
+          return index === firstIndex;
+        });
+        console.log(this.messageList)
       }
     );
   }
