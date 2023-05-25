@@ -25,7 +25,7 @@ export class ChatListComponent implements OnInit{
     
   }
   ngOnInit() {
-    this.getChats();
+    
     this.signalRService.subscribeConnection(
       (chatData: ChatReadDto) => {
         // Handle chat data
@@ -47,6 +47,7 @@ export class ChatListComponent implements OnInit{
         });
       }
     );
+    this.getChats();
   }
 
   getChats() {
@@ -58,7 +59,7 @@ export class ChatListComponent implements OnInit{
           this.chatList$ = of(this.chatList);
         }
       )
-    },500);
+    },1500);
    
   }
 
