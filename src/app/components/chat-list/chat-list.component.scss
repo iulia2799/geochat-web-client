@@ -4,7 +4,7 @@
     flex-direction: column;
     flex-shrink: 1;
     overflow-y: auto;
-    height: 500px;
+    height: calc(100vh - 210px);;
 }
 
 .chat-box {
